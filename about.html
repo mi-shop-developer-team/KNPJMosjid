@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মসজিদের পরিচিতি - কোনাবাড়ী নদীর পাড় জামে মসজিদ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d3b2e, #185a46, #06231a);
+            min-height: 100vh;
+            color: #ffffff;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Exit Button Structure */
+        .top-exit-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .top-exit-btn:hover {
+            background: #d4af37;
+            color: #0d3b2e;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .mosjid-icon {
+            font-size: 50px;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #c0d6cf;
+        }
+
+        /* Image Gallery & Banner Area */
+        .image-banner {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Content Sections */
+        .content-card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .content-card h2 {
+            font-size: 18px;
+            color: #d4af37;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .content-card p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #e0e0e0;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Bullet Points Area */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            font-size: 14px;
+            color: #e0e0e0;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list span {
+            color: #d4af37;
+            font-size: 16px;
+        }
+
+        /* Bottom Redirect Button */
+        .bottom-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: linear-gradient(90deg, #d4af37, #f3e5ab);
+            color: #0d3b2e;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2deg);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Top Exit Button -->
+        <a href="https://konabari-nodirpar-jame-mosjid.blogspot.com" class="top-exit-btn">
+            ✖ এক্সিট
+        </a>
+
+        <!-- Header -->
+        <div class="header-section">
+            <div class="mosjid-icon">🕌</div>
+            <h1>কোনাবাড়ী নদীর পাড় জামে মসজিদ</h1>
+            <p class="subtitle">আমাদের ইতিহাস, কার্যক্রম ও মসজিদ পরিচিতি</p>
+        </div>
+
+        <!-- Banner Image (আপনার মূল মসজিদের ছবির ডাইরেক্ট লিংক src-তে বসাবেন) -->
+        <img class="image-banner" src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1000&q=80" alt="মসজিদের ছবি">
+
+        <!-- Section 1: ইতিহাস ও প্রতিষ্ঠা -->
+        <div class="content-card">
+            <h2><span>📜</span> ইতিহাস ও প্রতিষ্ঠা</h2>
+            <p>
+                কোনাবাড়ী নদীর পাড় জামে মসজিদ অত্র এলাকার একটি ঐতিহ্যবাহী এবং গুরুত্বপূর্ণ ধর্মীয় প্রতিষ্ঠান। স্থানীয় মুসল্লিদের ইবাদত-বন্দেগী এবং দ্বীনি শিক্ষা বিস্তারের উদ্দেশ্যে স্থানীয় ধর্মপ্রাণ মানুষদের ঐকান্তিক প্রচেষ্টায় এটি প্রতিষ্ঠিত হয়।
+            </p>
+            <p>
+                প্রতিষ্ঠালগ্ন থেকেই এই মসজিদটি এলাকাবাসীর মধ্যে ভ্রাতৃত্ববোধ, ঐক্য এবং ইসলামিক মূল্যবোধ ছড়াতে গুরুত্বপূর্ণ ভূমিকা পালন করে আসছে। নদীর পাড়ের সুন্দর ও শান্ত পরিবেশে অবস্থিত হওয়ায় এখানে ইবাদতে এক বিশেষ প্রশান্তি অনুভূত হয়।
+            </p>
+        </div>
+
+        <!-- Section 2: সুযোগ-সুবিধা ও বৈশিষ্ট্য -->
+        <div class="content-card">
+            <h2><span>✨</span> সুযোগ-সুবিধা ও বৈশিষ্ট্য</h2>
+            <ul class="feature-list">
+                <li><span>✔</span> সুপ্রশস্ত ও সুন্দর শীতাতপ নিয়ন্ত্রিত প্রধান নামাজ ঘর।</li>
+                <li><span>✔</span> একসাথে বহু মানুষের জন্য সুব্যবস্থাসম্পন্ন অজুখানা।</li>
+                <li><span>✔</span> বিশুদ্ধ খাবারের পানির সুব্যবস্থা।</li>
+                <li><span>✔</span> শিশুদের জন্য প্রতিদিন সকালে কোরআন শিক্ষার বিশেষ ব্যবস্থা।</li>
+                <li><span>✔</span> প্রতি সপ্তাহে শুক্রবার বিশেষ ইসলামিক আলোচনা ও মাসআলা-মাসায়েল সেশন।</li>
+            </ul>
+        </div>
+
+        <!-- Section 3: আমাদের লক্ষ্য ও উদ্দেশ্য -->
+        <div class="content-card">
+            <h2><span>🎯</span> আমাদের লক্ষ্য ও উদ্দেশ্য</h2>
+            <p>
+                আমাদের মূল উদ্দেশ্য হলো সঠিক সুন্নাহ অনুযায়ী সালাত আদায়, এলাকাবাসীর মধ্যে দ্বীনি জ্ঞান ছড়িয়ে দেওয়া এবং তরুণ প্রজন্মকে ইসলামের সুন্দর শিক্ষার আলোয় গড়ে তোলা। এছাড়াও সমাজকল্যাণমূলক বিভিন্ন কাজে মসজিদটি ভূমিকা পালন করে থাকে।
+            </p>
+        </div>
+
+        <!-- Bottom Action Button -->
+        <div class="bottom-actions">
+            <a href="https://konabari-nodirpar-jame-mosjid.blogspot.com" class="btn-home">
+                🏠 মূল ওয়েবসাইটে ফিরে যান
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
