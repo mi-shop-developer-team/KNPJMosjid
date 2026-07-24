@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সালাতের সময়সূচী - কোনাবাড়ী নদীর পাড় জামে মসজিদ</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        .namaz-widget-container {
+            --primary: #065F46;
+            --primary-dark: #022C22;
+            --primary-light: #10B981;
+            --accent-gold: #D97706;
+            --accent-gold-light: #FBBF24;
+            --bg-card: #FFFFFF;
+            --bg-page: #F8FAFC;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --danger-color: #EF4444;
+
+            font-family: 'Hind Siliguri', 'Outfit', sans-serif;
+            max-width: 520px;
+            margin: 0 auto;
+            background: var(--bg-page);
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 25px 50px -12px rgba(2, 44, 34, 0.15);
+            box-sizing: border-box;
+            color: var(--text-dark);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .namaz-widget-container * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* SVG Icon Base Utility */
+        .svg-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+
+        /* Top Header & Exit Button Bar */
+        .top-action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .mosque-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(6, 95, 70, 0.08);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .exit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FEF2F2;
+            color: var(--danger-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid #FCA5A5;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+        }
+
+        .exit-btn:hover {
+            background: var(--danger-color);
+            color: #FFFFFF;
+            border-color: var(--danger-color);
+            transform: translateY(-2deg);
+        }
+
+        /* Hero Header Card */
+        .namaz-header {
+            background: linear-gradient(135deg, #022C22 0%, #065F46 60%, #047857 100%);
+            color: white;
+            padding: 24px 20px;
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 12px 30px rgba(6, 95, 70, 0.25);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .namaz-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-icon-wrap {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .namaz-title {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #FFFFFF;
+            letter-spacing: -0.2px;
+        }
+
+        .namaz-subtitle {
+            font-size: 13px;
+            color: var(--accent-gold-light);
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .namaz-date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            margin-top: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #F8FAFC;
+        }
+
+        /* Location Selector Chips */
+        .location-chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 2px 2px 14px 2px;
+            scrollbar-width: none;
+        }
+        .location-chips::-webkit-scrollbar { display: none; }
+
+        .chip-btn {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .chip-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 14px rgba(6, 95, 70, 0.3);
+        }
+
+        .location-dropdowns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .select-custom {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1.5px solid var(--border-color);
+            background: white;
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .select-custom:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.12);
+        }
+
+        /* Ultra Modern Live Waqt Hero Section */
+        .waqt-hero-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 24px 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waqt-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ECFDF5;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid #A7F3D0;
+        }
+
+        .current-waqt-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .timer-display-box {
+            background: linear-gradient(180deg, #022C22 0%, #065F46 100%);
+            border-radius: 20px;
+            padding: 18px 12px;
+            color: #FFFFFF;
+            max-width: 320px;
+            margin: 0 auto;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.1), 0 8px 20px rgba(6, 95, 70, 0.2);
+            position: relative;
+        }
+
+        .timer-time {
+            font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--accent-gold-light);
+            letter-spacing: 2px;
+            line-height: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .timer-label {
+            font-size: 12px;
+            color: #A7F3D0;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        /* SVG Circular Progress Ring Bar */
+        .ring-progress-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 44px;
+            height: 44px;
+        }
+
+        .ring-svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .ring-bg {
+            fill: none;
+            stroke: #E2E8F0;
+            stroke-width: 4;
+        }
+
+        .ring-fill {
+            fill: none;
+            stroke: var(--primary-light);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            transition: stroke-dashoffset 1s linear;
+        }
+
+        /* Tahajjud Card */
+        .tahajjud-banner {
+            background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(30, 27, 75, 0.18);
+        }
+
+        .tahajjud-info h4 {
+            font-size: 14px;
+            color: var(--accent-gold-light);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tahajjud-info p {
+            font-size: 11px;
+            color: #C7D2FE;
+            margin-top: 2px;
+        }
+
+        .tahajjud-time {
+            font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+        }
+
+        /* Prayer List Cards */
+        .prayer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .prayer-row {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1.5px solid var(--border-color);
+            position: relative;
+        }
+
+        .prayer-row.active {
+            background: #ECFDF5;
+            border-color: var(--primary-light);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.15);
+            transform: scale(1.02);
+        }
+
+        .prayer-row.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--primary);
+            border-radius: 6px 0 0 6px;
+        }
+
+        .prayer-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .prayer-icon-box {
+            width: 42px;
+            height: 42px;
+            background: #F1F5F9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+        }
+
+        .prayer-row.active .prayer-icon-box {
+            background: #FFFFFF;
+            color: var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
+
+        .prayer-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .prayer-row.active .prayer-name {
+            color: var(--primary-dark);
+        }
+
+        .prayer-right {
+            text-align: right;
+        }
+
+        .prayer-time {
+            font-family: 'Outfit', 'Hind Siliguri', sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .prayer-row.active .prayer-time {
+            color: var(--primary);
+        }
+
+        .pulse-indicator {
+            width: 9px;
+            height: 9px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Loading & Error Screen */
+        .loading-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 28px;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-banner {
+            background: #FEF2F2;
+            color: var(--danger-color);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+            text-align: center;
+            font-weight: 700;
+            border: 1px solid #FCA5A5;
+        }
+
+        @media (max-width: 400px) {
+            .namaz-widget-container { padding: 16px; }
+            .current-waqt-title { font-size: 26px; }
+            .timer-time { font-size: 30px; }
+            .prayer-time { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="namaz-widget-container" id="namazWidget">
+    
+    <!-- Loading Screen Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p style="margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--primary-dark);">সময়সূচী প্রস্তুত হচ্ছে...</p>
+    </div>
+
+    <!-- Top Action Bar with Exit Button -->
+    <div class="top-action-bar">
+        <div class="mosque-badge">
+            <span class="svg-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </span>
+            ইসলামিক সেবা
+        </div>
+
+        <!-- Exit Button Linking to Main Website -->
+        <a href="https://konabari-nodirpar-jame-mosjid.blogspot.com" class="exit-btn" title="মূল ওয়েবসাইটে চলে যান">
+            <span>এক্সিট</span>
+            <span class="svg-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </span>
+        </a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="namaz-header">
+        <div class="header-icon-wrap">
+            <span class="svg-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+        </div>
+        <div class="namaz-title" id="locationTitle">কোনাবাড়ী নদীর পাড় জামে মসজিদ</div>
+        <div class="namaz-subtitle" id="locationSub">ত্রিশাল, ময়মনসিংহ</div>
+        <div class="namaz-date-badge">
+            <span class="svg-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <span id="bengaliDate">লোড হচ্ছে...</span>
+        </div>
+    </div>
+
+    <!-- Offline or API Error Banner -->
+    <div class="error-banner" id="errorBanner">
+        ⚠️ ইন্টারনেট সংযোগ বিচ্ছিন্ন! পূর্বের সংরক্ষিত তথ্য প্রদর্শিত হচ্ছে।
+    </div>
+
+    <!-- Location Selector Chips -->
+    <div class="location-chips">
+        <button class="chip-btn active" id="btnDefaultLoc" onclick="setLocationMode('default')">
+            <span class="svg-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/></svg>
+            </span>
+            ডিফল্ট মসজিদ
+        </button>
+        <button class="chip-btn" id="btnGpsLoc" onclick="setLocationMode('gps')">
+            <span class="svg-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><circle cx="12" cy="12" r="3"/></svg>
+            </span>
+            আমার লোকেশন (GPS)
+        </button>
+        <button class="chip-btn" id="btnCustomLoc" onclick="setLocationMode('custom')">
+            <span class="svg-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            </span>
+            বিভাগ নির্বাচন
+        </button>
+    </div>
+
+    <!-- Division and District Selector -->
+    <div class="location-dropdowns" id="dropdownArea" style="display: none;">
+        <select class="select-custom" id="divisionSelect" onchange="onDivisionChange()">
+            <option value="Mymensingh">ময়মনসিংহ বিভাগ</option>
+            <option value="Dhaka">ঢাকা বিভাগ</option>
+            <option value="Chittagong">চট্টগ্রাম বিভাগ</option>
+            <option value="Rajshahi">রাজশাহী বিভাগ</option>
+            <option value="Khulna">খুলনা বিভাগ</option>
+            <option value="Barisal">বরিশাল বিভাগ</option>
+            <option value="Sylhet">সিলেট বিভাগ</option>
+            <option value="Rangpur">রংপুর বিভাগ</option>
+        </select>
+        <select class="select-custom" id="districtSelect" onchange="onDistrictChange()">
+            <!-- Dynamic Options -->
+        </select>
+    </div>
+
+    <!-- Active Waqt & Live Timer Hero Card -->
+    <div class="waqt-hero-card">
+        
+        <!-- SVG Ring Gauge -->
+        <div class="ring-progress-container" title="ওয়াক্তের অগ্রগতির হার">
+            <svg class="ring-svg" viewBox="0 0 36 36">
+                <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="ring-fill" id="progressRing" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg>
+        </div>
+
+        <div class="waqt-status-pill">
+            <span class="pulse-indicator"></span>
+            চলমান ওয়াক্ত
+        </div>
+
+        <div class="current-waqt-title" id="currentWaqtName">--</div>
+
+        <!-- Live Timer Box -->
+        <div class="timer-display-box">
+            <div class="timer-time" id="countdownTimer">০০:০০:০০</div>
+            <div class="timer-label" id="countdownSubtext">পরবর্তী ওয়াক্ত শুরু হতে বাকী</div>
+        </div>
+    </div>
+
+    <!-- Tahajjud Period Card -->
+    <div class="tahajjud-banner">
+        <div class="tahajjud-info">
+            <h4>
+                <span class="svg-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </span>
+                তাহাজ্জুদ (শেষ তৃতীয়াংশ)
+            </h4>
+            <p>ইশার পর থেকে ফজরের পূর্ব পর্যন্ত সময়</p>
+        </div>
+        <div class="tahajjud-time" id="tahajjudTimeDisplay">--:--</div>
+    </div>
+
+    <!-- Prayer List Area -->
+    <div class="prayer-list" id="prayerList">
+        
+        <div class="prayer-row" id="row_fajr">
+            <div class="prayer-left">
+                <div class="prayer-icon-box">
+                    <span class="svg-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 18v4M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M18 12h4M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                    </span>
+                </div>
+                <div class="prayer-name">ফজর <span style="font-size: 11px; font-weight: normal; color: var(--text-muted);">(সেহরির শেষ)</span></div>
+            </div>
+            <div class="prayer-right">
+                <div class="prayer-time" id="time_fajr">--:--</div>
+            </div>
+        </div>
+
+        <div class="prayer-row" id="row_sunrise">
+            <div class="prayer-left">
+                <div class="prayer-icon-box">
+                    <span class="svg-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </span>
+                </div>
+                <div class="prayer-name">সূর্যোদয়</div>
+            </div>
+            <div class="prayer-right">
+                <div class="prayer-time" id="time_sunrise">--:--</div>
+            </div>
+        </div>
+
+        <div class="prayer-row" id="row_dhuhr">
+            <div class="prayer-left">
+                <div class="prayer-icon-box">
+                    <span class="svg-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    </span>
+                </div>
+                <div class="prayer-name" id="dhuhrLabel">যোহর</div>
+            </div>
+            <div class="prayer-right">
+                <div class="prayer-time" id="time_dhuhr">--:--</div>
+            </div>
+        </div>
+
+        <div class="prayer-row" id="row_asr">
+            <div class="prayer-left">
+                <div class="prayer-icon-box">
+                    <span class="svg-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                    </span>
+                </div>
+                <div class="prayer-name">আসর</div>
+            </div>
+            <div class="prayer-right">
+                <div class="prayer-time" id="time_asr">--:--</div>
+            </div>
+        </div>
+
+        <div class="prayer-row" id="row_maghrib">
+            <div class="prayer-left">
+                <div class="prayer-icon-box">
+                    <span class="svg-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="23" y2="18"/></svg>
+                    </span>
+                </div>
+                <div class="prayer-name">মাগরিব <span style="font-size: 11px; font-weight: normal; color: var(--text-muted);">(ইফতার)</span></div>
+            </div>
+            <div class="prayer-right">
+                <div class="prayer-time" id="time_maghrib">--:--</div>
+            </div>
+        </div>
+
+        <div class="prayer-row" id="row_isha">
+            <div class="prayer-left">
+                <div class="prayer-icon-box">
+                    <span class="svg-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </span>
+                </div>
+                <div class="prayer-name">ইশা</div>
+            </div>
+            <div class="prayer-right">
+                <div class="prayer-time" id="time_isha">--:--</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    /**
+     * ISLAMIC PRAYER ENGINE - CORE JS
+     * Default Location: Konabari Nodir Par Jame Mosque, Trishal, Mymensingh
+     */
+
+    const DEFAULT_CONFIG = {
+        name: "কোনাবাড়ী নদীর পাড় জামে মসজিদ",
+        sub: "ত্রিশাল, ময়মনসিংহ",
+        lat: 24.0016,
+        lng: 90.3242
+    };
+
+    const BD_LOCATIONS = {
+        "Mymensingh": {
+            name: "ময়মনসিংহ বিভাগ",
+            districts: {
+                "Mymensingh": { name: "ময়মনসিংহ জেলা", lat: 24.7471, lng: 90.4203 },
+                "Trishal": { name: "ত্রিশাল (ডিফল্ট)", lat: 24.0016, lng: 90.3242 },
+                "Jamalpur": { name: "জামালপুর", lat: 24.9375, lng: 89.9377 },
+                "Netrokona": { name: "নেত্রকোণা", lat: 24.8709, lng: 90.7279 },
+                "Sherpur": { name: "শেরপুর", lat: 25.0204, lng: 90.0153 }
+            }
+        },
+        "Dhaka": {
+            name: "ঢাকা বিভাগ",
+            districts: {
+                "Dhaka": { name: "ঢাকা শহর", lat: 23.8103, lng: 90.4125 },
+                "Gazipur": { name: "গাজীপুর", lat: 23.9999, lng: 90.4203 },
+                "Narayanganj": { name: "নারায়ণগঞ্জ", lat: 23.6238, lng: 90.5000 },
+                "Tangail": { name: "টাঙ্গাইল", lat: 24.2513, lng: 89.9167 },
+                "Faridpur": { name: "ফরিদপুর", lat: 23.6070, lng: 89.8429 }
+            }
+        },
+        "Chittagong": {
+            name: "চট্টগ্রাম বিভাগ",
+            districts: {
+                "Chittagong": { name: "চট্টগ্রাম শহর", lat: 22.3569, lng: 91.7832 },
+                "CoxsBazar": { name: "কক্সবাজার", lat: 21.4272, lng: 92.0058 },
+                "Comilla": { name: "কুমিল্লা", lat: 23.4607, lng: 91.1809 },
+                "Noakhali": { name: "নোয়াখালী", lat: 22.8696, lng: 91.0993 }
+            }
+        },
+        "Rajshahi": {
+            name: "রাজশাহী বিভাগ",
+            districts: {
+                "Rajshahi": { name: "রাজশাহী শহর", lat: 24.3745, lng: 88.6042 },
+                "Bogra": { name: "বগুড়া", lat: 24.8481, lng: 89.3730 },
+                "Pabna": { name: "পাবনা", lat: 24.0108, lng: 89.2322 }
+            }
+        },
+        "Khulna": {
+            name: "খুলনা বিভাগ",
+            districts: {
+                "Khulna": { name: "খুলনা শহর", lat: 22.8456, lng: 89.5403 },
+                "Jessore": { name: "যশোর", lat: 23.1664, lng: 89.2081 },
+                "Kushtia": { name: "কুষ্টিয়া", lat: 23.9013, lng: 89.1204 }
+            }
+        },
+        "Barisal": {
+            name: "বরিশাল বিভাগ",
+            districts: {
+                "Barisal": { name: "বরিশাল শহর", lat: 22.7010, lng: 90.3535 },
+                "Patuakhali": { name: "পটুয়াখালী", lat: 22.3596, lng: 90.3298 },
+                "Bhola": { name: "ভোলা", lat: 22.6859, lng: 90.6482 }
+            }
+        },
+        "Sylhet": {
+            name: "সিলেট বিভাগ",
+            districts: {
+                "Sylhet": { name: "সিলেট শহর", lat: 24.8949, lng: 91.8687 },
+                "Moulvibazar": { name: "মৌলভীবাজার", lat: 24.4829, lng: 91.7774 },
+                "Habiganj": { name: "হবিগঞ্জ", lat: 24.3749, lng: 91.4155 }
+            }
+        },
+        "Rangpur": {
+            name: "রংপুর বিভাগ",
+            districts: {
+                "Rangpur": { name: "রংপুর শহর", lat: 25.7439, lng: 89.2752 },
+                "Dinajpur": { name: "দিনাজপুর", lat: 25.6279, lng: 88.6332 }
+            }
+        }
+    };
+
+    let currentCoords = { lat: DEFAULT_CONFIG.lat, lng: DEFAULT_CONFIG.lng };
+    let prayerTimesToday = null;
+    let timerInterval = null;
+
+    function toBengaliNumerals(str) {
+        if (str === null || str === undefined) return '';
+        const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+        return str.toString().replace(/\d/g, x => bnDigits[x]);
+    }
+
+    function timeStrToDate(timeStr, baseDate = new Date()) {
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        const d = new Date(baseDate);
+        d.setHours(hours, minutes, 0, 0);
+        return d;
+    }
+
+    function formatTimeBn(dateObj) {
+        let hours = dateObj.getHours();
+        const minutes = dateObj.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        const strTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${ampm}`;
+        return toBengaliNumerals(strTime);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initLocationDropdowns();
+        loadSavedLocation();
+        setupFridayCheck();
+    });
+
+    function setupFridayCheck() {
+        const today = new Date();
+        const isFriday = today.getDay() === 5;
+        document.getElementById('dhuhrLabel').innerText = isFriday ? "জুম'আ" : "যোহর";
+    }
+
+    function initLocationDropdowns() {
+        const districtSelect = document.getElementById('districtSelect');
+        districtSelect.innerHTML = '';
+        
+        const mym = BD_LOCATIONS["Mymensingh"].districts;
+        for (let key in mym) {
+            const opt = document.createElement('option');
+            opt.value = key;
+            opt.innerText = mym[key].name;
+            districtSelect.appendChild(opt);
+        }
+    }
+
+    function onDivisionChange() {
+        const divKey = document.getElementById('divisionSelect').value;
+        const districtSelect = document.getElementById('districtSelect');
+        districtSelect.innerHTML = '';
+        
+        const dists = BD_LOCATIONS[divKey].districts;
+        for (let key in dists) {
+            const opt = document.createElement('option');
+            opt.value = key;
+            opt.innerText = dists[key].name;
+            districtSelect.appendChild(opt);
+        }
+        onDistrictChange();
+    }
+
+    function onDistrictChange() {
+        const divKey = document.getElementById('divisionSelect').value;
+        const distKey = document.getElementById('districtSelect').value;
+        const dist = BD_LOCATIONS[divKey].districts[distKey];
+
+        currentCoords = { lat: dist.lat, lng: dist.lng };
+        document.getElementById('locationTitle').innerText = dist.name;
+        document.getElementById('locationSub').innerText = BD_LOCATIONS[divKey].name;
+
+        saveLocationState('custom', { div: divKey, dist: distKey, title: dist.name, sub: BD_LOCATIONS[divKey].name, lat: dist.lat, lng: dist.lng });
+        fetchPrayerData();
+    }
+
+    function setLocationMode(mode) {
+        document.getElementById('btnDefaultLoc').classList.remove('active');
+        document.getElementById('btnGpsLoc').classList.remove('active');
+        document.getElementById('btnCustomLoc').classList.remove('active');
+        document.getElementById('dropdownArea').style.display = 'none';
+
+        if (mode === 'default') {
+            document.getElementById('btnDefaultLoc').classList.add('active');
+            document.getElementById('locationTitle').innerText = DEFAULT_CONFIG.name;
+            document.getElementById('locationSub').innerText = DEFAULT_CONFIG.sub;
+            currentCoords = { lat: DEFAULT_CONFIG.lat, lng: DEFAULT_CONFIG.lng };
+            saveLocationState('default', null);
+            fetchPrayerData();
+        } 
+        else if (mode === 'gps') {
+            document.getElementById('btnGpsLoc').classList.add('active');
+            if (navigator.geolocation) {
+                showLoading(true);
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        currentCoords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                        document.getElementById('locationTitle').innerText = "আমার অবস্থান";
+                        document.getElementById('locationSub').innerText = "জিপিএস (GPS) দ্বারা চিহ্নিত";
+                        saveLocationState('gps', { lat: currentCoords.lat, lng: currentCoords.lng });
+                        fetchPrayerData();
+                    },
+                    (err) => {
+                        alert("জিপিএস পারমিশন পাওয়া যায়নি। ডিফল্ট লোকেশনে ফেরত যাওয়া হচ্ছে।");
+                        setLocationMode('default');
+                    }
+                );
+            } else {
+                alert("আপনার ব্রাউজারে জিপিএস সমর্থন করে না।");
+                setLocationMode('default');
+            }
+        } 
+        else if (mode === 'custom') {
+            document.getElementById('btnCustomLoc').classList.add('active');
+            document.getElementById('dropdownArea').style.display = 'grid';
+            onDistrictChange();
+        }
+    }
+
+    function saveLocationState(mode, data) {
+        localStorage.setItem('namaz_loc_mode', mode);
+        if (data) localStorage.setItem('namaz_loc_data', JSON.stringify(data));
+        else localStorage.removeItem('namaz_loc_data');
+    }
+
+    function loadSavedLocation() {
+        const mode = localStorage.getItem('namaz_loc_mode') || 'default';
+        if (mode === 'custom') {
+            const data = JSON.parse(localStorage.getItem('namaz_loc_data') || '{}');
+            if (data && data.div) {
+                document.getElementById('divisionSelect').value = data.div;
+                onDivisionChange();
+                document.getElementById('districtSelect').value = data.dist;
+                setLocationMode('custom');
+                return;
+            }
+        }
+        setLocationMode(mode);
+    }
+
+    function showLoading(show) {
+        const overlay = document.getElementById('loadingOverlay');
+        if (show) overlay.classList.add('active');
+        else overlay.classList.remove('active');
+    }
+
+    async function fetchPrayerData() {
+        showLoading(true);
+        document.getElementById('errorBanner').style.display = 'none';
+
+        const today = new Date();
+        const dateStr = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+        
+        const url = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${currentCoords.lat}&longitude=${currentCoords.lng}&method=1`;
+
+        try {
+            const response = await fetchWithRetry(url, 3);
+            const result = await response.json();
+            
+            if (result.code === 200) {
+                prayerTimesToday = result.data.timings;
+                
+                localStorage.setItem('namaz_cached_data', JSON.stringify({
+                    date: dateStr,
+                    timings: prayerTimesToday,
+                    dateHijri: result.data.date.hijri
+                }));
+
+                updateDateDisplay(result.data.date);
+                renderPrayerTimes();
+                startWaqtEngine();
+            } else {
+                throw new Error("API Error");
+            }
+        } catch (error) {
+            console.error("Prayer fetch error:", error);
+            loadCachedData();
+        } finally {
+            showLoading(false);
+        }
+    }
+
+    async function fetchWithRetry(url, retries = 3) {
+        for (let i = 0; i < retries; i++) {
+            try {
+                const res = await fetch(url);
+                if (res.ok) return res;
+            } catch (err) {
+                if (i === retries - 1) throw err;
+                await new Promise(r => setTimeout(r, 1000 * (i + 1)));
+            }
+        }
+    }
+
+    function loadCachedData() {
+        const cached = localStorage.getItem('namaz_cached_data');
+        if (cached) {
+            const data = JSON.parse(cached);
+            prayerTimesToday = data.timings;
+            document.getElementById('errorBanner').style.display = 'block';
+            renderPrayerTimes();
+            startWaqtEngine();
+        }
+    }
+
+    function updateDateDisplay(dateInfo) {
+        if (!dateInfo) return;
+        const greg = dateInfo.readable;
+        const hijri = `${toBengaliNumerals(dateInfo.hijri.day)} ${dateInfo.hijri.month.ar}, ${toBengaliNumerals(dateInfo.hijri.year)} হিজরী`;
+        document.getElementById('bengaliDate').innerText = `${toBengaliNumerals(greg)} | ${hijri}`;
+    }
+
+    function renderPrayerTimes() {
+        if (!prayerTimesToday) return;
+
+        const p = prayerTimesToday;
+        document.getElementById('time_fajr').innerText = formatTimeBn(timeStrToDate(p.Fajr));
+        document.getElementById('time_sunrise').innerText = formatTimeBn(timeStrToDate(p.Sunrise));
+        document.getElementById('time_dhuhr').innerText = formatTimeBn(timeStrToDate(p.Dhuhr));
+        document.getElementById('time_asr').innerText = formatTimeBn(timeStrToDate(p.Asr));
+        document.getElementById('time_maghrib').innerText = formatTimeBn(timeStrToDate(p.Maghrib));
+        document.getElementById('time_isha').innerText = formatTimeBn(timeStrToDate(p.Isha));
+
+        calculateTahajjud(p);
+    }
+
+    function calculateTahajjud(timings) {
+        const ishaTime = timeStrToDate(timings.Isha);
+        const fajrTime = timeStrToDate(timings.Fajr);
+        fajrTime.setDate(fajrTime.getDate() + 1);
+
+        const diffMs = fajrTime.getTime() - ishaTime.getTime();
+        const lastThirdMs = diffMs * (2 / 3);
+        const tahajjudStart = new Date(ishaTime.getTime() + lastThirdMs);
+
+        document.getElementById('tahajjudTimeDisplay').innerText = formatTimeBn(tahajjudStart);
+    }
+
+    function startWaqtEngine() {
+        if (timerInterval) clearInterval(timerInterval);
+        
+        updateEngineTick();
+        timerInterval = setInterval(updateEngineTick, 1000);
+    }
+
+    function updateEngineTick() {
+        if (!prayerTimesToday) return;
+
+        const now = new Date();
+        const p = prayerTimesToday;
+
+        const fajr = timeStrToDate(p.Fajr);
+        const sunrise = timeStrToDate(p.Sunrise);
+        const dhuhr = timeStrToDate(p.Dhuhr);
+        const asr = timeStrToDate(p.Asr);
+        const maghrib = timeStrToDate(p.Maghrib);
+        const isha = timeStrToDate(p.Isha);
+
+        const nextFajr = new Date(fajr);
+        nextFajr.setDate(nextFajr.getDate() + 1);
+
+        let activeWaqt = '';
+        let nextWaqtTime = null;
+        let prevWaqtTime = null;
+        let activeRowId = '';
+
+        document.querySelectorAll('.prayer-row').forEach(row => row.classList.remove('active'));
+
+        if (now >= fajr && now < sunrise) {
+            activeWaqt = 'ফজর';
+            activeRowId = 'row_fajr';
+            prevWaqtTime = fajr;
+            nextWaqtTime = sunrise;
+        } else if (now >= sunrise && now < dhuhr) {
+            activeWaqt = 'সূর্যোদয় (ইশরাক)';
+            activeRowId = 'row_sunrise';
+            prevWaqtTime = sunrise;
+            nextWaqtTime = dhuhr;
+        } else if (now >= dhuhr && now < asr) {
+            const isFriday = now.getDay() === 5;
+            activeWaqt = isFriday ? "জুম'আ" : 'যোহর';
+            activeRowId = 'row_dhuhr';
+            prevWaqtTime = dhuhr;
+            nextWaqtTime = asr;
+        } else if (now >= asr && now < maghrib) {
+            activeWaqt = 'আসর';
+            activeRowId = 'row_asr';
+            prevWaqtTime = asr;
+            nextWaqtTime = maghrib;
+        } else if (now >= maghrib && now < isha) {
+            activeWaqt = 'মাগরিব';
+            activeRowId = 'row_maghrib';
+            prevWaqtTime = maghrib;
+            nextWaqtTime = isha;
+        } else {
+            activeWaqt = 'ইশা / তাহাজ্জুদ';
+            activeRowId = 'row_isha';
+            prevWaqtTime = isha;
+            nextWaqtTime = nextFajr;
+        }
+
+        if (activeRowId) {
+            const el = document.getElementById(activeRowId);
+            if (el) el.classList.add('active');
+        }
+
+        document.getElementById('currentWaqtName').innerText = activeWaqt;
+
+        const totalDuration = nextWaqtTime.getTime() - prevWaqtTime.getTime();
+        const elapsed = now.getTime() - prevWaqtTime.getTime();
+        const remainingMs = nextWaqtTime.getTime() - now.getTime();
+
+        if (remainingMs <= 0) {
+            fetchPrayerData();
+            return;
+        }
+
+        const hrs = Math.floor((remainingMs / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((remainingMs / (1000 * 60)) % 60);
+        const secs = Math.floor((remainingMs / 1000) % 60);
+
+        const timeStr = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        document.getElementById('countdownTimer').innerText = toBengaliNumerals(timeStr);
+
+        // Circular Ring Dashoffset Update
+        const progressPercent = Math.min(Math.max(elapsed / totalDuration, 0), 1);
+        const dashoffset = 100 - (100 * progressPercent);
+        document.getElementById('progressRing').style.strokeDashoffset = dashoffset;
+    }
+
+</script>
+
+</body>
+</html>
